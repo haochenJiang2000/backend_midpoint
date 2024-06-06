@@ -111,8 +111,10 @@ def getaudio3():
 
 @app.route('/audiototext', methods=['POST'])  # 聊天接口
 def audiototext():
+    print("数据：",request.json)
     url = 'http://172.188.112.9:5000/audiototext'# 请求接口
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
+    print(req.json())
     return req.json()
 
 
