@@ -15,13 +15,10 @@ import argparse
 import base64
 import subprocess
 # from concurrent.futures import ThreadPoolExecutor
-from pprint import pprint
 import difflib
 # import multiprocessing
 from multiprocessing.pool import ThreadPool
 # from multiprocessing import Pool
-from utils.sendEmail import sendEmail, sendVerifyEmail
-from utils.cache import Cache
 # from ChatbotVoice import mychat
 # # from utils.GPU_autochoice import GPUManager
 # from werkzeug.utils import secure_filename
@@ -65,21 +62,6 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SECRET_KEY'] = os.urandom(24)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-cache = Cache()
-cache.set('all_task', list())  # 设置一个缓存对象
-
-logger = logging.getLogger(__file__)
-logger.setLevel(level=logging.INFO)
-start_time = time.strftime("%Y_%m_%d_%H_%M_%S", time.localtime())
-handler = logging.FileHandler('./logs/log_2023.txt'.format(str(start_time)))
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-logger.info("日志系统启动")
-# annotator = ZhAnnotator.create_default(annotator_id=0)
-logger.info("进程队列初始化")
-
 # all_task = list()   # 收集当前运行进程
 d = difflib.Differ()
 # BATCH_SIZE = 6
@@ -95,6 +77,7 @@ def tableaccess():
 
 @app.route('/chat', methods=['POST'])  # 聊天接口
 def chat():
+    print(request.json)
     url = 'http://172.188.112.9:5000/chat'# 请求接口
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
     return req.json()
@@ -190,4 +173,4 @@ def hello():
 
 if __name__ == "__main__":
     # torch.multiprocessing.set_start_method('spawn')
-    app.run(host='0.0.0.0', port=81, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

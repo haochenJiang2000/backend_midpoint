@@ -2,3 +2,5 @@ tqdm
 flask
 flask_cors
 flask_caching
+gunicorn
+requests
