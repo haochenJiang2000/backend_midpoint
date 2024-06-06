@@ -108,6 +108,11 @@ def getaudio3():
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
     return req.json()
 
+@app.route('/getaudiosasurl')  # 获得音频文件
+def getaudiosasurl():
+    url = 'http://172.188.112.9:5000/getaudiosasurl'# 请求接口
+    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
+    return req.json()
 
 @app.route('/audiototext', methods=['POST'])  # 聊天接口
 def audiototext():
