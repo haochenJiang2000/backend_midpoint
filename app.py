@@ -120,8 +120,10 @@ def audiototext():
 
 @app.route('/search', methods=['POST'])  # 匹配接口
 def search():
+    print("接收请求，数据",request.json)
     url = 'http://172.188.112.9:5000/search'# 请求接口
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
+    print("结果：",req.json())
     return req.json()
 
 
