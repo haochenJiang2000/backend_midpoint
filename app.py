@@ -128,7 +128,7 @@ def search():
 
 
 @app.route('/test', methods=['POST'])  # 用户基本信息维护
-def update_information():
+def test():
     print("接收到请求")
     return {
         'code': 200,
