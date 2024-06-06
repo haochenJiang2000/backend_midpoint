@@ -127,47 +127,14 @@ def search():
     return req.json()
 
 
-@app.route('/update_information', methods=['POST'])  # 用户基本信息维护
+@app.route('/test', methods=['POST'])  # 用户基本信息维护
 def update_information():
-    url = 'http://172.188.112.9:5000/update_information'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
+    print("接收到请求")
+    return {
+        'code': 200,
+        'message': "注册成功！"
+    }
 
-
-@app.route('/information', methods=['POST'])  # 请求用户基本信息
-def information():
-    url = 'http://172.188.112.9:5000/information'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
-
-
-
-@app.route('/autochat', methods=['POST'])  # AI自动回复，给出一些推荐
-def autochat():
-    url = 'http://172.188.112.9:5000/autochat'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
-
-
-@app.route('/Chatmemory', methods=['POST'])  # 请求长期记忆数据
-def Chatmemory():
-    url = 'http://172.188.112.9:5000/Chatmemory'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
-
-
-@app.route('/UpdateChatmemory', methods=['POST'])  # 更新长期记忆
-def UpdateChatmemory():
-    url = 'http://172.188.112.9:5000/UpdateChatmemory'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
-
-
-@app.route('/roleinformation', methods=['POST'])  # 请求角色信息
-def roleinformation():
-    url = 'http://172.188.112.9:5000/roleinformation'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
 
 
 @app.route('/')
