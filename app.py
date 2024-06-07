@@ -140,6 +140,27 @@ def test():
         'message': "注册成功！"
     }
 
+from flask import jsonify
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    if file:
+        filename = "audio_temp.mp3"
+        # 假设你想转发到的服务器的上传API是 http://other-server.com/upload
+        response = forward_file(file, 'http://172.188.112.9:5000/upload', filename)
+        return jsonify(response), 200
+
+def forward_file(file, forward_url, filename):
+    # 使用Requests库将文件转发到另一个服务器
+    files = {'file': (filename, file.stream, file.mimetype, {'Expires': '0'})}
+    with requests.Session() as s:
+        r = s.post(forward_url, files=files)
+    return r.json()  # 假设另一端服务器返回的是JSON数据
 
 
 @app.route('/')
