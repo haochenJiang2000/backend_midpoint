@@ -90,27 +90,21 @@ def commonchat():
     return req.json()
 
 
-@app.route('/getaudio1')  # 获得音频文件
+@app.route('/getaudio1', methods=['POST'])  # 获得音频文件
 def getaudio1():
     url = 'http://172.188.112.9:5000/getaudio1'# 请求接口
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
     return req.json()
 
-@app.route('/getaudio2')  # 获得音频文件
+@app.route('/getaudio2', methods=['POST'])  # 获得音频文件
 def getaudio2():
     url = 'http://172.188.112.9:5000/getaudio2'# 请求接口
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
     return req.json()
 
-@app.route('/getaudio3')  # 获得音频文件
+@app.route('/getaudio3', methods=['POST'])  # 获得音频文件
 def getaudio3():
     url = 'http://172.188.112.9:5000/getaudio3'# 请求接口
-    req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
-    return req.json()
-
-@app.route('/getaudiosasurl', methods=['POST'])  # 获得音频文件
-def getaudiosasurl():
-    url = 'http://172.188.112.9:5000/getaudiosasurl'# 请求接口
     req = requests.post(url, data=json.dumps(request.json), headers={'Content-Type': 'application/json'})
     return req.json()
 
